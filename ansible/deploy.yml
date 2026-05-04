@@ -1,0 +1,15 @@
+---
+- name: Deploy Spring Boot app
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Create deployment directory
+      file:
+        path: /var/www/html/Midterm-2026/Sreng-Panha
+        state: directory
+        mode: '0755'
+    - name: Copy built files to server
+      copy:
+        src: "{{ workspace }}/target/demo-0.0.1-SNAPSHOT.war"
+        dest: /var/www/html/Midterm-2026/Sreng-Panha/
+        mode: '0644'
